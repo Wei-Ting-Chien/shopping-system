@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # PostgreSQL 資料庫
+  postgres:
+    image: postgres:15-alpine
+    container_name: shopping-postgres
+    restart: always
+    environment:
+      POSTGRES_DB: shopping_db
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+    ports:
+      - "5432:5432" # 開發用：讓 Eclipse 可以連進去
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - shopping-network
+
+  # Redis 快取
+  redis:
+    image: redis:alpine
+    container_name: shopping-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - shopping-network
+
+networks:
+  shopping-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

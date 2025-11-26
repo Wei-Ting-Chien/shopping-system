@@ -1,0 +1,27 @@
+# Maven Output
+target/
+*.jar
+*.war
+*.ear
+
+# Eclipse 專案設定檔
+.settings/
+.classpath
+.project
+.factorypath
+bin/
+
+# OS Trash
+.DS_Store
+Thumbs.db
+
+# Log
+*.log
+
+# IDE Setting
+.vscode/
+.idea/
+*.iml
+
+# config file
+.env

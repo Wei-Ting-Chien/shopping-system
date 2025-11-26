@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    # 使用 H2 記憶體資料庫，跑完測試資料就消失，最乾淨
+    url: jdbc:h2:mem:shopping_test_db;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+  sql:
+    init:
+      mode: always
+
+logging:
+  level:
+    root: INFO

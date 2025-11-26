@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: shopping-backend # 這裡統一叫 shopping-backend
+  profiles:
+    active: dev # 預設啟動開發環境
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true # 開啟駝峰命名轉換 (user_name -> userName)
