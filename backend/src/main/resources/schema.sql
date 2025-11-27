@@ -1,4 +1,4 @@
--- 開發階段：重置資料表
+-- Using When Dev Enviroment
 DROP TABLE IF EXISTS order_item;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS product;
