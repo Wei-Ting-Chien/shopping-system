@@ -3,6 +3,24 @@
 
 <mapper namespace="com.shopping.system.mapper.ProductMapper">
 
+	<select id="selectByCondition" resultType="com.shopping.system.model.Product">
+	    SELECT id, name, category, price, stock, status, description, image_url, create_at, update_at
+	    FROM product
+	    <where>
+	        AND status = true
+	            
+	        <if test="keyword != null and keyword != ''">
+	            AND name LIKE CONCAT('%', #{keyword}, '%')
+	        </if>
+	            
+	        <if test="category != null and category != ''">
+	            AND category = #{category}
+	        </if>
+	    </where>
+	    ORDER BY id ASC
+	</select>
+
+
     <select id="selectAll" resultType="com.shopping.system.model.Product">
         SELECT id, name, category, price, stock, status, description, image_url, create_at, update_at
         FROM product
@@ -13,4 +31,27 @@
         SELECT * FROM product WHERE id = #{id}
     </select>
 
+
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO product (name, category, price, stock, description, image_url, status, create_at, update_at)
+        VALUES (#{name}, #{category}, #{price}, #{stock}, #{description}, #{imageUrl}, #{status}, NOW(), NOW())
+    </insert>
+    
+    <update id="update">
+        UPDATE product
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="category != null">category = #{category},</if>
+            <if test="price != null">price = #{price},</if>
+            <if test="stock != null">stock = #{stock},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="imageUrl != null">image_url = #{imageUrl},</if>
+            <if test="status != null">status = #{status},</if>
+            update_at = NOW() </set>
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM product WHERE id = #{id}
+    </delete>
 </mapper>
