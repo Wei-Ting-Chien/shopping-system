@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shopping.system.mapper.ProductMapper">
+
+    <select id="selectAll" resultType="com.shopping.system.model.Product">
+        SELECT id, name, category, price, stock, status, description, image_url, create_at, update_at
+        FROM product
+        ORDER BY id ASC
+    </select>
+    
+    <select id="selectById" resultType="com.shopping.system.model.Product">
+        SELECT * FROM product WHERE id = #{id}
+    </select>
+
+</mapper>
