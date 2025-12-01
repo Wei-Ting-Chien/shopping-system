@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shopping.system.dto.ProductDto;
 import com.shopping.system.service.ProductService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
 @RestController // API Entry + Response is Json
+@Tag(name = "商品管理 API", description = "提供商品的增刪改查功能") // 美化 Swagger API
 @RequestMapping("/api/products")
 public class ProductController {
 
@@ -26,6 +29,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping // Get Product 查詢
+    @Operation(summary = "查詢商品列表", description = "支援分類與關鍵字篩選")
     public List<ProductDto.Response> getProducts(
             @RequestParam(required = false) String keyword,
             @RequestParam(required = false) String category
@@ -34,6 +38,7 @@ public class ProductController {
     }
     
     @GetMapping("/{id}")
+    @Operation(summary = "查詢單一商品", description = "根據 ID 取得商品詳細資訊")
     public ResponseEntity<ProductDto.Response> getProduct(@PathVariable Integer id) {
         ProductDto.Response product = productService.getProductById(id);
         if (product != null) {
@@ -44,6 +49,7 @@ public class ProductController {
     }
     
     @PostMapping
+    @Operation(summary = "新增商品", description = "建立新商品，需帶入庫存與價格")
     public ResponseEntity<ProductDto.Response> createProduct(@Valid @RequestBody ProductDto.CreateRequest request) {
         ProductDto.Response response = productService.createProduct(request);
         
