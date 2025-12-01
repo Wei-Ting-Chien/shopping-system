@@ -9,7 +9,7 @@ public class OrderItem {
     private Integer price;      
     private Integer quantity;
     
-    //
+    //Getter and Setter
 	public Integer getId() {
 		return id;
 	}

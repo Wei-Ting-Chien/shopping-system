@@ -25,12 +25,14 @@ CREATE TABLE orders (
     customer_location VARCHAR(255),
     total_amount INT,
     status VARCHAR(50),
-    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    create_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    update_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 3. Order_item Table
 CREATE TABLE order_item (
     id SERIAL PRIMARY KEY,
+    product_name VARCHAR(255),
     order_id INT REFERENCES orders(id),
     product_id INT REFERENCES product(id),
     quantity INT NOT NULL, -- 這裡是「購買數量」

@@ -2,11 +2,12 @@ package com.shopping.system.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.shopping.system.dto.ProductDto;
-import com.shopping.system.dto.ProductDto.Response;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.shopping.system.dto.ProductDto;
 import com.shopping.system.mapper.ProductMapper;
 import com.shopping.system.model.Product;
 
